@@ -1,0 +1,30 @@
+css: styles.css
+format:
+  html:
+    anchor-sections: false
+    linkcolor: "#6699CC"
+    respect-user-color-scheme: true
+    theme:
+      light: flatly
+      dark: darkly
+number-depth: 3
+project:
+  output-dir: _build/html
+  resources:
+    - .htaccess
+  type: website
+website:
+  description: Personal EP1 homepage, Faculty of Physics, Ruhr University Bochum
+  favicon: favicon.ico
+  navbar:
+    background: "#17365c"
+    foreground: "#e7e7e7"
+    logo: _images/rub-white.svg
+    logo-href: https://rub.de
+    pinned: true
+    tools:
+      - href: https://github.com/YOUR_GITHUB_USERNAME
+        icon: github
+  search: false
+  site-url: https://ep1.rub.de/~username
+  title: Your Name's Homepage
