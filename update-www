@@ -24,6 +24,7 @@ from rich.progress import (
 THIS_DIR = Path(__file__).resolve().parent
 SOURCE_DIR = THIS_DIR / "docs" / "_build" / "html"
 PROTECTED_DIRS = {"_images", "site_libs"}
+EP1_HOST = "ep1.rub.de"
 
 
 def update_www(
@@ -32,6 +33,10 @@ def update_www(
         bool, typer.Option(help="Run `poe doc` before uploading.")
     ] = True,
     upload: Annotated[bool, typer.Option(help="Copy build files to EP1 WWW.")] = True,
+    ssh_user: Annotated[
+        str | None,
+        typer.Option("--ssh", metavar="USER", help="Upload to EP1 via SSH as USER."),
+    ] = None,
 ) -> None:
     """Update the EP1 homepage on EP1 WWW.
 
@@ -49,6 +54,9 @@ def update_www(
         rich.print("[green]Build complete")
 
     if upload:
+        if ssh_user is not None:
+            _upload_via_ssh(ssh_user)
+            return
         www_dir = Path(f"/home/tau/{os.getenv('USER')}/WWW")
         if not www_dir.exists():
             rich.print("[red]Could not copy build files to EP1 WWW")
@@ -106,6 +114,27 @@ def update_www(
         )
     else:
         rich.print("[yellow]Rerun with --upload to copy files to EP1 WWW.")
+
+
+def _upload_via_ssh(user: str) -> None:
+    remote = f"{user}@{EP1_HOST}"
+    www_dir = f"/home/tau/{user}/WWW"
+    rich.print(f"[blue]Copying build files to {remote}:{www_dir}...")
+    subprocess.run(["ssh", remote, f"mkdir -p {www_dir}"], check=True)  # noqa: S603
+    subprocess.run(  # noqa: S603
+        ["scp", "-r", f"{SOURCE_DIR}/.", f"{remote}:{www_dir}/"], check=True
+    )
+    subprocess.run(  # noqa: S603
+        [
+            "ssh",
+            remote,
+            f"chmod -R g-wrx,o-rw {www_dir}"
+            f" && find {www_dir} -type d -exec chmod o+x {{}} +"
+            f" && find {www_dir} -type f -exec chmod o+r {{}} +",
+        ],
+        check=True,
+    )
+    rich.print(f"[green]Documentation on https://ep1.rub.de/~{user} has been updated")
 
 
 def _find_subpages(www_dir: Path) -> list[Path]:
