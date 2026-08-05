@@ -19,9 +19,12 @@ website:
   navbar:
     background: "#17365c"
     foreground: "#e7e7e7"
+    left:
+      - href: index.qmd
     logo: _images/rub-white.svg
     logo-href: https://rub.de
     pinned: true
+    title: false
     tools:
       - href: https://github.com/YOUR_GITHUB_USERNAME
         icon: github
