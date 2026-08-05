@@ -31,8 +31,7 @@ help = "Build and publish the EP1 homepage"
 
 [tool.poe.tasks.all]
 help = "Run all continuous integration (CI) tasks locally"
-ignore_fail = "return_non_zero"
-sequence = ["doc", "style"]
+sequence = ["style", "doc"]
 
 [tool.poe.tasks.style]
 cmd = "pre-commit run --all-files"
