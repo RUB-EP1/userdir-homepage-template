@@ -1,0 +1,7 @@
+# Optional Apache redirects for your EP1 homepage.
+#
+# Keep this file if you need redirects after renaming or moving published pages.
+# Remove these examples or replace them with your own rules before publishing.
+#
+# RedirectMatch 301 ^/~username/old-page\.html$ /~username/new-page.html
+# RedirectMatch 301 ^/~username/old-project/(.*)$ /~username/new-project/$1

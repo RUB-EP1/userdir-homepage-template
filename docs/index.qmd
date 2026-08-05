@@ -1,0 +1,27 @@
+---
+title: Your Name's Homepage
+---
+
+## About
+
+Write a short introduction here. For example, mention your role, research group, and main research interests.
+
+Replace all template placeholders before publishing:
+
+- `Your Name`
+- `username`
+- `YOUR_GITHUB_USERNAME`
+
+## Projects
+
+Use this section to list projects, notes, documentation pages, or software that you want to make easy to find.
+
+### Current work
+
+- [Project title](https://example.org): one-sentence project description
+- [Internal project page](https://www.ep1.rub.de/~username/project-name) {{< bi lock color=orange >}}
+
+## Useful links
+
+- [EP1 Institute of Experimental Physics](https://ep1.rub.de)
+- [Ruhr University Bochum](https://www.ruhr-uni-bochum.de/en)

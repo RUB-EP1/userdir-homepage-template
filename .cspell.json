@@ -1,0 +1,57 @@
+{
+  "enableFiletypes": [
+    "git-commit",
+    "github-actions-workflow",
+    "julia",
+    "jupyter"
+  ],
+  "flagWords": [
+    "analyse",
+    "colour",
+    "comparision",
+    "favour",
+    "flavour",
+    "hte",
+    "optimise",
+    "paramater",
+    "parmater",
+    "transision",
+    "transisions"
+  ],
+  "ignorePaths": [
+    "**/.cspell.json",
+    "**/_extensions/**",
+    "*.ico",
+    "*.svg",
+    ".editorconfig",
+    ".envrc",
+    ".gitattributes",
+    ".github/dependabot.yml",
+    ".gitignore",
+    ".htaccess",
+    ".pre-commit-config.yaml",
+    ".prettierignore",
+    ".vscode/*",
+    "pyproject.toml",
+    "update-www"
+  ],
+  "ignoreWords": [
+    "color",
+    "doclive",
+    "jpsi",
+    "linkcolor",
+    "nbsp",
+    "poethepoet",
+    "pyproject",
+    "realpath",
+    "sshfs",
+    "subpage",
+    "subpages",
+    "username",
+    "venv"
+  ],
+  "language": "en-US",
+  "useGitignore": true,
+  "version": "0.2",
+  "words": ["ComPWA", "Quarto"]
+}
