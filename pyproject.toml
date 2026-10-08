@@ -7,6 +7,9 @@ license = "MIT"
 authors = [{ name = "Common Partial-Wave Analysis" }]
 dependencies = ["quarto-cli"]
 
+[dependency-groups]
+doc = ["lychee-bin"]
+
 [tool.compwa.policy.github]
 no-cd = true
 no-github-actions = true
@@ -24,10 +27,16 @@ cmd = "quarto render docs --no-clean"
 [tool.poe.groups.doc.tasks.doclive]
 cmd = "quarto preview docs --port 7000"
 help = "Set up a server to directly preview changes to the HTML pages"
+executor = { group = "doc" }
 
 [tool.poe.groups.doc.tasks.website]
 cmd = "./update-www"
 help = "Build and publish the EP1 homepage"
+
+[tool.poe.groups.doc.tasks.linkcheck]
+executor = { group = "doc" }
+help = "Check external links in the documentation (requires internet connection)"
+shell = "lychee --root-dir . . && lychee --root-dir . --extensions qmd ."
 
 [tool.poe.tasks.all]
 help = "Run all continuous integration (CI) tasks locally"
@@ -39,15 +48,18 @@ cmd = "pre-commit run --all-files"
 [tool.poe.tasks.upgrade]
 executor = { type = "simple" }
 help = "Upgrade lock files"
-parallel = ["_upgrade-precommit", "_upgrade-uv"]
+parallel = [
+    "_upgrade-precommit",
+    "_upgrade-uv",
+]
 
 [tool.poe.tasks._upgrade-precommit]
-cmd = "pre-commit autoupdate -j8"
+cmd = "prek autoupdate"
 executor = { type = "simple" }
 
 [tool.poe.tasks._upgrade-uv]
-executor = { type = "simple" }
 cmd = "uv lock --upgrade"
+executor = { type = "simple" }
 
 [tool.tombi.files]
 exclude = ["**/uv.lock"]
@@ -61,5 +73,5 @@ key-empty = "off"
 
 [[tool.tombi.schemas]]
 root = "tool.compwa.policy"
-path = "https://raw.githubusercontent.com/ComPWA/policy/0.9.3/compwa-policy.schema.json"
+path = "https://raw.githubusercontent.com/ComPWA/policy/0.9.8/compwa-policy.schema.json"
 include = ["pyproject.toml"]
