@@ -1195,7 +1195,7 @@ doc = [
 requires-dist = [{ name = "quarto-cli" }]
 
 [package.metadata.requires-dev]
-doc = [{ name = "lychee-bin" }]
+doc = [{ name = "lychee-bin", specifier = ">=0.24.0" }]
 
 [[package]]
 name = "send2trash"

@@ -8,11 +8,30 @@ authors = [{ name = "Common Partial-Wave Analysis" }]
 dependencies = ["quarto-cli"]
 
 [dependency-groups]
-doc = ["lychee-bin"]
+doc = ["lychee-bin>=0.24.0"]
 
 [tool.compwa.policy.github]
 no-cd = true
 no-github-actions = true
+
+[tool.lychee]
+extensions = [
+    "css",
+    "htm",
+    "html",
+    "markdown",
+    "md",
+    "mdown",
+    "mdwn",
+    "mdx",
+    "mkd",
+    "mkdn",
+    "mkdown",
+    "qmd",
+    "txt",
+    "xml",
+]
+root_dir = "."
 
 [tool.poe.executor]
 isolated = true
@@ -36,7 +55,7 @@ help = "Build and publish the EP1 homepage"
 [tool.poe.groups.doc.tasks.linkcheck]
 executor = { group = "doc" }
 help = "Check external links in the documentation (requires internet connection)"
-shell = "lychee --root-dir . . && lychee --root-dir . --extensions qmd ."
+cmd = "lychee ."
 
 [tool.poe.tasks.all]
 help = "Run all continuous integration (CI) tasks locally"
