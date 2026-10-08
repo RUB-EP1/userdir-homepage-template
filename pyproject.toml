@@ -15,6 +15,9 @@ no-cd = true
 no-github-actions = true
 
 [tool.lychee]
+exclude = [
+    "^https://www\\.ep1\\.rub\\.de/~username/",  # placeholder for an internal project page
+]
 extensions = ["css", "md", "qmd"]
 
 [tool.poe.executor]
