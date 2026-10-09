@@ -30,7 +30,7 @@ source .venv/bin/activate
 In addition, you can install [Poe the Poet](https://poethepoet.natn.io), which defines common tasks under [`pyproject.toml`](./pyproject.toml):
 
 ```shell
-uv tool install --python=3.13 poethepoet
+uv tool install --python=3.14 poethepoet
 ```
 
 The most important task is to build the website and start a preview server:
