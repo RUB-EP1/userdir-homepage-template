@@ -46,7 +46,7 @@ cmd = "lychee ."
 
 [tool.poe.tasks.all]
 help = "Run all continuous integration (CI) tasks locally"
-sequence = ["style", "doc"]
+sequence = ["style", "doc", "linkcheck"]
 
 [tool.poe.tasks.style]
 cmd = "prek run --all-files"

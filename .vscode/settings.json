@@ -31,7 +31,6 @@
   "git.rebaseWhenSync": true,
   "gitlens.telemetry.enabled": false,
   "livePreview.defaultPreviewPath": "docs/_build/html",
-  "multiDiffEditor.experimental.enabled": true,
   "prettier.documentSelectors": ["**/*.qmd"],
   "redhat.telemetry.enabled": false,
   "rewrap.wrappingColumn": 88,
