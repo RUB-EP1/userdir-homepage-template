@@ -36,8 +36,18 @@ help = "Set up a server to directly preview changes to the HTML pages"
 executor = { group = "doc" }
 
 [tool.poe.groups.doc.tasks.website]
-cmd = "./update-www"
 help = "Build and publish the EP1 homepage"
+sequence = [
+    "_doc-clean",
+    "_publish",
+]
+
+[tool.poe.groups.doc.tasks._doc-clean]
+cmd = "quarto render docs"
+
+[tool.poe.groups.doc.tasks._publish]
+cmd = "uvx userdir-publish"
+executor = { type = "simple" }
 
 [tool.poe.groups.doc.tasks.linkcheck]
 executor = { group = "doc" }
@@ -78,6 +88,18 @@ line-width = 88
 key-empty = "off"
 
 [[tool.tombi.schemas]]
+root = "tool.userdir-publish"
+path = "https://raw.githubusercontent.com/RUB-EP1/userdir-publish/refs/heads/main/userdir-publish.schema.json"
+include = ["pyproject.toml"]
+
+[[tool.tombi.schemas]]
 root = "tool.compwa.policy"
 path = "https://raw.githubusercontent.com/ComPWA/policy/0.10.3/compwa-policy.schema.json"
 include = ["pyproject.toml"]
+
+[tool.userdir-publish]
+host = "ep1.rub.de"
+htaccess-source = "docs"
+keep = ["/*/"]
+source = "docs/_build/html"
+web-root = "~/WWW"

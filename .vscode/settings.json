@@ -25,9 +25,6 @@
   "cSpell.enabled": true,
   "diffEditor.experimental.showMoves": true,
   "editor.formatOnSave": true,
-  "files.associations": {
-    "update-www": "python"
-  },
   "git.rebaseWhenSync": true,
   "gitlens.telemetry.enabled": false,
   "livePreview.defaultPreviewPath": "docs/_build/html",

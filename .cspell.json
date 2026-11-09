@@ -32,8 +32,7 @@
     ".pre-commit-config.yaml",
     ".prettierignore",
     ".vscode/*",
-    "pyproject.toml",
-    "update-www"
+    "pyproject.toml"
   ],
   "ignoreWords": [
     "color",
@@ -53,5 +52,5 @@
   "language": "en-US",
   "useGitignore": true,
   "version": "0.2",
-  "words": ["ComPWA", "Quarto"]
+  "words": ["ComPWA", "Quarto", "userdir"]
 }
