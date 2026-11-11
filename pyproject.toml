@@ -19,8 +19,8 @@ no-github-actions = true
 [tool.lychee]
 cache = true
 cache_exclude_status = "400.."
-# [:] keeps Lychee from extracting regex patterns as URLs.
 exclude = [
+    # [:] keeps Lychee from extracting regex patterns as URLs.
     '^https[:]//www\.ep1\.rub\.de/~username/',  # placeholder for an internal project page
     '^https[:]//www\.ep1\.rub\.de/~$',  # Lychee truncates the username placeholder
 ]
@@ -66,7 +66,11 @@ cmd = "lychee ."
 
 [tool.poe.tasks.all]
 help = "Run all continuous integration (CI) tasks locally"
-sequence = ["style", "linkcheck", "doc"]
+sequence = [
+    "style",
+    "linkcheck",
+    "doc",
+]
 
 [tool.poe.tasks.style]
 cmd = "prek run --all-files"
