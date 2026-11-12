@@ -6,7 +6,7 @@
 
 This repository is a template for personal EP1 homepages served from `https://www.ep1.rub.de/~<username>/`.
 
-It uses [Quarto](https://quarto.org) for the static website and includes a small helper script for copying the rendered site to the `~/WWW` directory on the EP1 infrastructure.
+It uses [Quarto](https://quarto.org) for the static website and publishes the rendered site to the `~/WWW` directory on the EP1 infrastructure with [`userdir-publish`](https://rub-ep1.github.io/userdir-publish).
 
 ## Create your homepage repository
 
@@ -47,37 +47,14 @@ uv tool install --with pre-commit-uv pre-commit
 
 ## Updating your EP1 homepage
 
-The [`update-www`](./update-www) script can be used to update the content of your EP1 homepage. This is the `WWW/` directory in your EP1 home directory. On EP1 machines, create the directory once:
+The homepage is published to the `WWW/` directory in your EP1 home directory with [`userdir-publish`](https://rub-ep1.github.io/userdir-publish). Build and publish the site with:
 
 ```shell
-mkdir ~/WWW
+poe website
 ```
 
-Then publish the rendered site with:
+This renders the Quarto site from a clean build directory and copies it to `/home/tau/<username>/WWW` with `rsync`, directly on EP1 machines and over SSH to `ep1.rub.de` from anywhere else. Files that are no longer part of the build are removed, while the subdirectories that other projects publish to are preserved. If your EP1 login differs from your local user name, set it once in `~/.config/userdir-publish/config.toml`:
 
-```shell
-./update-www
+```toml
+user = "your-ep1-username"
 ```
-
-The script builds the Quarto site, replaces the generated homepage content in `~/WWW`, preserves existing subdirectories, and sets permissions suitable for public web serving.
-
-### Updating from a non-EP1 machine
-
-It is also possible to update your homepage externally using [`sshfs`](https://github.com/libfuse/sshfs). For this, mimic the `/home/tau/$EP1_USERNAME` directory structure locally, with `$EP1_USERNAME` set to your EP1 username:
-
-```shell
-sudo mkdir -p /home/tau/$USER
-sudo chown -R $USER /home/tau/$USER
-```
-
-Mount the remote directory:
-
-```shell
-EP1_USERNAME=your-ep1-username
-sshfs $EP1_USERNAME@ep1.rub.de:/home/tau/$EP1_USERNAME /home/tau/$USER
-```
-
-> [!WARNING]
-> Your local `$USER` name can differ from `$EP1_USERNAME`. The [`update-www`](./update-www) script uses `/home/tau/$USER`.
-
-The [`update-www`](./update-www) script can now be run from your local machine, as it will update the mounted remote directory.

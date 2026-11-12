@@ -4,34 +4,20 @@
     "rewrap.wrappingColumn": 72
   },
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.wordWrap": "on"
   },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[quarto]": {
+  "[json][jsonc][markdown][quarto][yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[toml]": {
     "editor.defaultFormatter": "tombi-toml.tombi"
   },
-  "[yaml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "cSpell.enabled": true,
   "diffEditor.experimental.showMoves": true,
   "editor.formatOnSave": true,
-  "files.associations": {
-    "update-www": "python"
-  },
   "git.rebaseWhenSync": true,
   "gitlens.telemetry.enabled": false,
   "livePreview.defaultPreviewPath": "docs/_build/html",
-  "multiDiffEditor.experimental.enabled": true,
   "prettier.documentSelectors": ["**/*.qmd"],
   "redhat.telemetry.enabled": false,
   "rewrap.wrappingColumn": 88,

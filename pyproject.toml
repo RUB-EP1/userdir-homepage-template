@@ -11,14 +11,24 @@ dependencies = ["quarto-cli"]
 doc = ["lychee-bin>=0.24.0"]
 
 [tool.compwa.policy.github]
+dependabot-assignees = ["redeboer"]
+keep-workflow = ["lock.yml"]
 no-cd = true
 no-github-actions = true
 
 [tool.lychee]
+cache = true
+cache_exclude_status = "400.."
 exclude = [
-    "^https://www\\.ep1\\.rub\\.de/~username/",  # placeholder for an internal project page
+    # [:] keeps Lychee from extracting regex patterns as URLs.
+    '^https[:]//www\.ep1\.rub\.de/~username/',  # placeholder for an internal project page
+    '^https[:]//www\.ep1\.rub\.de/~$',  # Lychee truncates the username placeholder
 ]
 extensions = ["css", "md", "qmd"]
+hidden = true
+include_fragments = "anchor-only"
+include_verbatim = true
+max_cache_age = "7d"
 
 [tool.poe.executor]
 isolated = true
@@ -36,8 +46,18 @@ help = "Set up a server to directly preview changes to the HTML pages"
 executor = { group = "doc" }
 
 [tool.poe.groups.doc.tasks.website]
-cmd = "./update-www"
 help = "Build and publish the EP1 homepage"
+sequence = [
+    "_doc-clean",
+    "_publish",
+]
+
+[tool.poe.groups.doc.tasks._doc-clean]
+cmd = "quarto render docs"
+
+[tool.poe.groups.doc.tasks._publish]
+cmd = "uvx userdir-publish"
+executor = { type = "simple" }
 
 [tool.poe.groups.doc.tasks.linkcheck]
 executor = { group = "doc" }
@@ -46,7 +66,11 @@ cmd = "lychee ."
 
 [tool.poe.tasks.all]
 help = "Run all continuous integration (CI) tasks locally"
-sequence = ["style", "doc"]
+sequence = [
+    "style",
+    "linkcheck",
+    "doc",
+]
 
 [tool.poe.tasks.style]
 cmd = "prek run --all-files"
@@ -78,6 +102,18 @@ line-width = 88
 key-empty = "off"
 
 [[tool.tombi.schemas]]
-root = "tool.compwa.policy"
-path = "https://raw.githubusercontent.com/ComPWA/policy/0.10.1/compwa-policy.schema.json"
+root = "tool.userdir-publish"
+path = "https://raw.githubusercontent.com/RUB-EP1/userdir-publish/refs/heads/main/userdir-publish.schema.json"
 include = ["pyproject.toml"]
+
+[[tool.tombi.schemas]]
+root = "tool.compwa.policy"
+path = "https://raw.githubusercontent.com/ComPWA/policy/0.10.7/compwa-policy.schema.json"
+include = ["pyproject.toml"]
+
+[tool.userdir-publish]
+host = "ep1.rub.de"
+htaccess-source = "docs"
+keep = ["/*/"]
+source = "docs/_build/html"
+web-root = "~/WWW"

@@ -1,3 +1,13 @@
 _build/
+.lycheecache
 .quarto/
 **/*.code-workspace
+
+# Agent tooling
+.agents/
+.claude/
+.codex/
+.gemini/
+AGENTS.md
+CLAUDE.md
+GEMINI.md
