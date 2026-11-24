@@ -5,7 +5,7 @@
 [![Spelling checked](https://img.shields.io/badge/cspell-checked-brightgreen.svg)](https://github.com/streetsidesoftware/cspell/tree/main/packages/cspell)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-This repository is a template for personal EP1 homepages served from `https://www.ep1.rub.de/~<username>/`.
+This repository is a template for personal EP1 homepages served from `https://ep1.rub.de/~<username>/`.
 
 It uses [Quarto](https://quarto.org) for the static website and publishes the rendered site to the `~/WWW` directory on the EP1 infrastructure with [`userdir-publish`](https://rub-ep1.github.io/userdir-publish).
 
