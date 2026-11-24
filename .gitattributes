@@ -1,1 +1,2 @@
+* text=auto eol=lf
 **/*.qmd linguist-language=Markdown linguist-generated=true
