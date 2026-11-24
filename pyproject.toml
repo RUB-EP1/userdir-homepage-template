@@ -1,5 +1,5 @@
 [project]
-name = "rub-ep1-homepage-template"
+name = "userdir-homepage-template"
 version = "0.0.1"
 description = "Template for personal EP1 homepages"
 requires-python = "~=3.14.0"
