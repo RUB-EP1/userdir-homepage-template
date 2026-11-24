@@ -28,22 +28,23 @@ uv sync
 source .venv/bin/activate
 ```
 
-In addition, you can install [Poe the Poet](https://poethepoet.natn.io), which defines common tasks under [`pyproject.toml`](./pyproject.toml):
+In addition, install [Poe the Poet](https://poethepoet.natn.io), which runs the common tasks defined in [`pyproject.toml`](./pyproject.toml), and [`prek`](https://prek.j178.dev), which runs style checks before each commit:
 
 ```shell
-uv tool install --python=3.14 poethepoet
+uv tool install poethepoet
+uv tool install prek
+```
+
+Then activate the `prek` hooks in your clone, so that style checks run on every commit:
+
+```shell
+prek install
 ```
 
 The most important task is to build the website and start a preview server:
 
 ```shell
 poe doclive
-```
-
-It is also recommended to install [`pre-commit`](https://pre-commit.com) to run style checks before committing changes:
-
-```shell
-uv tool install --with pre-commit-uv pre-commit
 ```
 
 ## Updating your EP1 homepage
