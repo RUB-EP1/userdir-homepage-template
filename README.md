@@ -1,10 +1,11 @@
 # EP1 homepage template
 
+[![License](https://img.shields.io/github/license/RUB-EP1/userdir-homepage-template)](./LICENSE)
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 [![Spelling checked](https://img.shields.io/badge/cspell-checked-brightgreen.svg)](https://github.com/streetsidesoftware/cspell/tree/main/packages/cspell)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-This repository is a template for personal EP1 homepages served from `https://www.ep1.rub.de/~<username>/`.
+This repository is a template for personal EP1 homepages served from `https://ep1.rub.de/~<username>/`.
 
 It uses [Quarto](https://quarto.org) for the static website and publishes the rendered site to the `~/WWW` directory on the EP1 infrastructure with [`userdir-publish`](https://rub-ep1.github.io/userdir-publish).
 
@@ -27,22 +28,23 @@ uv sync
 source .venv/bin/activate
 ```
 
-In addition, you can install [Poe the Poet](https://poethepoet.natn.io), which defines common tasks under [`pyproject.toml`](./pyproject.toml):
+In addition, install [Poe the Poet](https://poethepoet.natn.io), which runs the common tasks defined in [`pyproject.toml`](./pyproject.toml), and [`prek`](https://prek.j178.dev), which runs style checks before each commit:
 
 ```shell
-uv tool install --python=3.14 poethepoet
+uv tool install poethepoet
+uv tool install prek
+```
+
+Then activate the `prek` hooks in your clone, so that style checks run on every commit:
+
+```shell
+prek install
 ```
 
 The most important task is to build the website and start a preview server:
 
 ```shell
 poe doclive
-```
-
-It is also recommended to install [`pre-commit`](https://pre-commit.com) to run style checks before committing changes:
-
-```shell
-uv tool install --with pre-commit-uv pre-commit
 ```
 
 ## Updating your EP1 homepage

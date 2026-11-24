@@ -19,7 +19,7 @@ Use this section to list projects, notes, documentation pages, or software that 
 ### Current work
 
 - [Project title](https://example.org): one-sentence project description
-- [Internal project page](https://www.ep1.rub.de/~username/project-name) {{< bi lock color=orange >}}
+- [Internal project page](https://ep1.rub.de/~username/project-name) {{< bi lock color=orange >}}
 
 ## Useful links
 
