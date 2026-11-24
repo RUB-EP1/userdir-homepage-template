@@ -12,17 +12,15 @@ doc = ["lychee-bin>=0.24.0"]
 
 [tool.compwa.policy.github]
 dependabot-assignees = ["redeboer"]
-keep-workflow = ["lock.yml"]
 no-cd = true
-no-github-actions = true
 
 [tool.lychee]
 cache = true
 cache_exclude_status = "400.."
 exclude = [
     # [:] keeps Lychee from extracting regex patterns as URLs.
-    '^https[:]//www\.ep1\.rub\.de/~username/',  # placeholder for an internal project page
-    '^https[:]//www\.ep1\.rub\.de/~$',  # Lychee truncates the username placeholder
+    '^https[:]//ep1\.rub\.de/~username/',  # placeholder for an internal project page
+    '^https[:]//ep1\.rub\.de/~$',  # Lychee truncates the username placeholder
 ]
 extensions = ["css", "md", "qmd"]
 hidden = true
